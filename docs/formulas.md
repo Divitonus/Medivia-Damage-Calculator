@@ -38,19 +38,21 @@ The `playerLevel / 4` in the formula is the one-handed case; for two-handed weap
 
 The two-handed example matches. **The compendium's one-handed example does not** (formula gives about 38, it prints 32), and it is the outlier: an in-game test settled it in favour of the written formula.
 
-**In-game tests (Offensive, level 281, melee skill 115, Strength 153):**
-
-| Weapon | Unrounded prediction | In game |
-| --- | --- | --- |
-| One-handed, atk 49 | 182.6 to 496.6 | 182 to 496 |
-| Two-handed, atk 83 | 296.4 to 786.7 | 296 to **787** |
+**In-game tests (level 281, melee skill 115):** one-handed (atk 49) in Offensive stance at Strength 28 to 153, and two-handed (atk 83) in Offensive, Balanced and Defensive stance at Strength 40 to 154. Every minimum and maximum matched this, with the result rounded down:
 
 ```
-max = 25 + 115^2 / 1550 * atk / 1.0 + 153 * 0.35
-min = level / (4 one-handed, 2 two-handed) + max_without_strength * 0.15 + 153 * 0.30
+maxValue = 25 + skill^2 / 1550 * atk / attackFactor
+max      = floor(maxValue + 0.35 * Strength)
+min      = floor(level / 4 (1H) or level / 2 (2H) + maxValue * 0.15 + 0.30 * Strength)
 ```
 
-Further one-handed tests at Strength 28 to 153 (seven values) matched every min and max when the result is rounded down, so the formulas, `level / 4`, the 0.30 and 0.35 Strength bonuses and flooring are confirmed for one-handed weapons. The two-handed minimum (296) also matches with `level / 2`. **One unexplained value:** the two-handed maximum shows 787 where the formula gives 786.7. Treat the two-handed maximum as accurate to +1 until more two-handed data points are tested. The compendium examples (173.65 shows as 173, 309.9 as 309) are consistent with rounding down.
+What this confirms:
+- The `level / 4` (one-handed) and `level / 2` (two-handed) minimum terms.
+- Strength is added flat after the formulas, at 0.35 per point to the maximum and 0.30 per point to the minimum.
+- The `* 0.15` in the minimum uses the stance-adjusted `maxValue` (before Strength), so stance lowers the minimum as well as the maximum.
+- Results round down. The compendium examples (173.65 shows as 173, 309.9 as 309) agree.
+
+The compendium's own one-handed example is the only value that disagrees with all of this. A first two-handed test read 787 where the formula gave 786.7, but it was recorded at Strength 153 and the later tests match a Strength of 154 exactly (787.1), so it was probably a Strength misrecording.
 
 ### Attack speed — Confirmed
 
@@ -171,4 +173,3 @@ The compendium pages above give nothing on these, so they are open for the next 
 - Fury scaling with level.
 - Strength values of specific items.
 - Spell damage (the Strength spellpower bonus is known, the spell formulas are not).
-- The two-handed maximum, which was 1 higher in game than the formula (787 vs 786.7); more two-handed data points needed.
