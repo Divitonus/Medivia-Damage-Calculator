@@ -52,7 +52,7 @@ What this confirms:
 - The `* 0.15` in the minimum uses the stance-adjusted `maxValue` (before Strength), so stance lowers the minimum as well as the maximum.
 - Results round down. The compendium examples (173.65 shows as 173, 309.9 as 309) agree.
 
-The compendium's own one-handed example is the only value that disagrees with all of this. A first two-handed test read 787 where the formula gave 786.7, but it was recorded at Strength 153 and the later tests match a Strength of 154 exactly (787.1), so it was probably a Strength misrecording.
+The compendium's own one-handed example is the only value that disagrees with all of this.
 
 ### Attack speed — Confirmed
 
