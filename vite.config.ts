@@ -6,6 +6,6 @@ export default defineConfig({
   base: '/Medivia-Damage-Calculator/',
   plugins: [react()],
   test: {
-    include: ['tests/**/*.test.ts'],
+    include: ['tests/**/*.test.{ts,tsx}'],
   },
 })
