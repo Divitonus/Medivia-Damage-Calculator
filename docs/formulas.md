@@ -50,7 +50,7 @@ max = 25 + 115^2 / 1550 * atk / 1.0 + 153 * 0.35
 min = level / (4 one-handed, 2 two-handed) + max_without_strength * 0.15 + 153 * 0.30
 ```
 
-The formulas, the `level / 4` (one-handed) and `level / 2` (two-handed) terms, and the flat Strength bonus all reproduce the game to within 1. The minimums round down. **The exact rounding of the maximum is unresolved:** 496.6 shows as 496 but 786.7 shows as 787, which neither rounding the final value nor rounding any single step down or to nearest explains. Treat the maximum as accurate to +/-1 until more data points are tested. The compendium examples (173.65 shows as 173, 309.9 as 309) are consistent with rounding down but predate this.
+Further one-handed tests at Strength 28 to 153 (seven values) matched every min and max when the result is rounded down, so the formulas, `level / 4`, the 0.30 and 0.35 Strength bonuses and flooring are confirmed for one-handed weapons. The two-handed minimum (296) also matches with `level / 2`. **One unexplained value:** the two-handed maximum shows 787 where the formula gives 786.7. Treat the two-handed maximum as accurate to +1 until more two-handed data points are tested. The compendium examples (173.65 shows as 173, 309.9 as 309) are consistent with rounding down.
 
 ### Attack speed — Confirmed
 
@@ -171,4 +171,4 @@ The compendium pages above give nothing on these, so they are open for the next 
 - Fury scaling with level.
 - Strength values of specific items.
 - Spell damage (the Strength spellpower bonus is known, the spell formulas are not).
-- Exact rounding of the maximum hit (off by one in the two-handed in-game test).
+- The two-handed maximum, which was 1 higher in game than the formula (787 vs 786.7); more two-handed data points needed.
