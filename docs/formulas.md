@@ -16,7 +16,7 @@ maxValue = 25 + (attackSkill ^ 2) / 1550 * attackValue / attackFactor
 - `attackValue`: the weapon's attack.
 - `attackFactor`: set by stance (see Stances).
 
-### Minimum hit — Confirmed, with an open discrepancy
+### Minimum hit — Confirmed (in-game tested)
 
 ```
 minValue = (playerLevel / 4) + (maxValue * 0.15)
@@ -29,14 +29,23 @@ The compendium also says level raises the minimum damage by weapon hand:
 | One-handed | +1 min damage every 4 levels (`level / 4`) |
 | Two-handed | +1 min damage every 2 levels (`level / 2`) |
 
-The `playerLevel / 4` in the formula is the one-handed case. Checking the compendium's examples (level 50, skill 80, Offensive):
+The `playerLevel / 4` in the formula is the one-handed case; for two-handed weapons the level term is `level / 2`. Checking the compendium's examples (level 50, skill 80, Offensive):
 
 | Weapon | maxValue | minValue by formula | minValue in compendium |
 | --- | --- | --- | --- |
 | Bright Sword (1H, atk 36) | 173 | 12.5 + 26.0 = ~38 | **32** |
 | Giant Sword (2H, atk 69) | 309 | 25 + 46.35 = ~71 | **71** |
 
-The two-handed example matches. **The one-handed example does not** (formula gives about 38, the compendium prints 32). Do not treat the one-handed minimum as settled until it is tested in game. Rounding is not stated; the max examples are consistent with rounding down (173.65 prints as 173).
+The two-handed example matches. **The compendium's one-handed example does not** (formula gives about 38, it prints 32), and it is the outlier: an in-game test settled it in favour of the written formula.
+
+**In-game test (one-handed, Offensive):** level 281, melee skill 115, Strength 153, weapon attack 49. Predicted max 496 (matches in game) and min 182.6, in game min 182. So one-handed uses `level / 4`, and the Strength bonus is added flat after the formulas (see Strength). Values round down.
+
+```
+max = floor(25 + 115^2 / 1550 * 49 / 1.0 + 153 * 0.35) = 496
+min = floor(281 / 4 + (443.08 * 0.15) + 153 * 0.30)     = 182
+```
+
+The two-handed `level / 2` term is matched by the compendium example only, not yet tested in game. Rounding down is consistent with the max examples (173.65 prints as 173).
 
 ### Attack speed — Confirmed
 
@@ -59,7 +68,7 @@ A larger factor lowers the maximum hit. Stance is changed in the Inventory tab, 
 
 Level 50, melee skill 80, Offensive. `80^2 / 1550 = 4.129`.
 
-- Bright Sword (1H, atk 36): `25 + 4.129 * 36 / 1.0 = 173`. Range 32 to 173 (see discrepancy above).
+- Bright Sword (1H, atk 36): `25 + 4.129 * 36 / 1.0 = 173`. Range 32 to 173 as printed; the formula gives about 38 for the minimum (see above).
 - Giant Sword (2H, atk 69): `25 + 4.129 * 69 / 1.0 = 309`. Range 71 to 309.
 
 Final damage is then reduced by the target's armor or shield. Melee never misses and can only be used at close range.
@@ -74,7 +83,9 @@ A stat from equipment and temporary effects only (for example Green Witches Poti
 | Maximum melee weapon damage | +0.35 |
 | Spellpower | +1.20 |
 
-**Not stated by the compendium:** whether the bonus is added after the min/max formulas above (we assume it is added to the result, **Assumed**), and the Strength value of any specific item (it depends on Item Rank).
+**Confirmed in game:** the bonus is added flat to the result of the min and max formulas (`max += 0.35 * Strength`, `min += 0.30 * Strength`), not folded into `maxValue` before the `* 0.15` step. See the in-game test under Minimum hit.
+
+**Not stated by the compendium:** the Strength value of any specific item (it depends on Item Rank).
 
 ## 3. Damage taken
 
@@ -155,4 +166,4 @@ The compendium pages above give nothing on these, so they are open for the next 
 - Fury scaling with level.
 - Strength values of specific items.
 - Spell damage (the Strength spellpower bonus is known, the spell formulas are not).
-- The one-handed minimum damage discrepancy in section 1.
+- In-game test of the two-handed minimum (`level / 2`).
