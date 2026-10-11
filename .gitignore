@@ -147,3 +147,10 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# AI agent files (kept local)
+CLAUDE.md
+AGENTS.md
+.claude/
+docs/agents/
+.scratch/
