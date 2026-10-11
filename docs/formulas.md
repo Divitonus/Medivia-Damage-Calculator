@@ -38,14 +38,19 @@ The `playerLevel / 4` in the formula is the one-handed case; for two-handed weap
 
 The two-handed example matches. **The compendium's one-handed example does not** (formula gives about 38, it prints 32), and it is the outlier: an in-game test settled it in favour of the written formula.
 
-**In-game test (one-handed, Offensive):** level 281, melee skill 115, Strength 153, weapon attack 49. Predicted max 496 (matches in game) and min 182.6, in game min 182. So one-handed uses `level / 4`, and the Strength bonus is added flat after the formulas (see Strength). Values round down.
+**In-game tests (Offensive, level 281, melee skill 115, Strength 153):**
+
+| Weapon | Unrounded prediction | In game |
+| --- | --- | --- |
+| One-handed, atk 49 | 182.6 to 496.6 | 182 to 496 |
+| Two-handed, atk 83 | 296.4 to 786.7 | 296 to **787** |
 
 ```
-max = floor(25 + 115^2 / 1550 * 49 / 1.0 + 153 * 0.35) = 496
-min = floor(281 / 4 + (443.08 * 0.15) + 153 * 0.30)     = 182
+max = 25 + 115^2 / 1550 * atk / 1.0 + 153 * 0.35
+min = level / (4 one-handed, 2 two-handed) + max_without_strength * 0.15 + 153 * 0.30
 ```
 
-The two-handed `level / 2` term is matched by the compendium example only, not yet tested in game. Rounding down is consistent with the max examples (173.65 prints as 173).
+The formulas, the `level / 4` (one-handed) and `level / 2` (two-handed) terms, and the flat Strength bonus all reproduce the game to within 1. The minimums round down. **The exact rounding of the maximum is unresolved:** 496.6 shows as 496 but 786.7 shows as 787, which neither rounding the final value nor rounding any single step down or to nearest explains. Treat the maximum as accurate to +/-1 until more data points are tested. The compendium examples (173.65 shows as 173, 309.9 as 309) are consistent with rounding down but predate this.
 
 ### Attack speed — Confirmed
 
@@ -166,4 +171,4 @@ The compendium pages above give nothing on these, so they are open for the next 
 - Fury scaling with level.
 - Strength values of specific items.
 - Spell damage (the Strength spellpower bonus is known, the spell formulas are not).
-- In-game test of the two-handed minimum (`level / 2`).
+- Exact rounding of the maximum hit (off by one in the two-handed in-game test).
