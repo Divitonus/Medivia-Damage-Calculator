@@ -33,10 +33,10 @@ The `playerLevel / 4` in the formula is the one-handed case. Checking the compen
 
 | Weapon | maxValue | minValue by formula | minValue in compendium |
 | --- | --- | --- | --- |
-| Bright Sword (1H, atk 36) | 173 | 12 + 25.95 = ~37 | **32** |
+| Bright Sword (1H, atk 36) | 173 | 12.5 + 26.0 = ~38 | **32** |
 | Giant Sword (2H, atk 69) | 309 | 25 + 46.35 = ~71 | **71** |
 
-The two-handed example matches. **The one-handed example does not** (formula gives about 37, the compendium prints 32). Do not treat the one-handed minimum as settled until it is tested in game. Rounding is not stated; the max examples are consistent with rounding down (173.65 prints as 173).
+The two-handed example matches. **The one-handed example does not** (formula gives about 38, the compendium prints 32). Do not treat the one-handed minimum as settled until it is tested in game. Rounding is not stated; the max examples are consistent with rounding down (173.65 prints as 173).
 
 ### Attack speed — Confirmed
 
