@@ -24,7 +24,7 @@ maxValue = 20 + (attackSkill ^ 2) / 1600 * attackValue / attackFactor
 minValue = playerLevel / 5 + (maxValue * 0.20)
 ```
 
-Compared with melee ([knight.md](knight.md)):
+Compared with melee (the melee column mirrors [knight.md](knight.md) §1; update both together):
 
 | Term | Melee | Distance |
 | --- | --- | --- |
@@ -46,7 +46,7 @@ Level 50, distance skill 80, Offensive, crossbow + bolts (atk 30). `80^2 / 1600 
 ### Hitting and reduction — Confirmed
 
 - Distance attacks ignore blocking (the target's shield or weapon); only the target's [armor](damage-taken.md#armor--confirmed) reduces them.
-- Unlike melee, they can miss, and they are less likely to hit when fired from very close range.
+- They can miss, and they are less likely to hit when fired from very close range.
 
 The hit chance itself (by skill, distance or target) is **not stated**.
 
@@ -73,7 +73,7 @@ The training page says a blood hit is needed "every 30 turns (60 seconds)", so o
 
 ## 3. Dexterity — Confirmed
 
-A stat from equipment and temporary effects only. Benefits archers and players with no vocation. Per point of Dexterity:
+A stat from equipment and temporary effects only. Benefits only archers and players with no vocation. Per point of Dexterity:
 
 | Effect | Per point |
 | --- | --- |
@@ -81,7 +81,7 @@ A stat from equipment and temporary effects only. Benefits archers and players w
 | Maximum distance weapon damage | +1.20 |
 | Spellpower | +0.75 |
 
-Sources: equipment, as a fixed Property or a randomized Attribute on many distance weapons and gear pieces, scaled by Item Rank; and consumables such as Green Witches Potion and Sweet Maris Feast. (Green Witches Potion is also listed as a Strength source on the Strength page; whether it gives the stat that fits the vocation is not stated.)
+Sources: equipment, as a fixed Property or a randomized Attribute on many distance weapons and gear pieces, tied to the item's Item Rank; and consumables such as Green Witches Potion and Sweet Maris Feast. (Green Witches Potion is also listed as a Strength source on the Strength page; whether it gives the stat that fits the vocation is not stated.)
 
 How it is applied is **Assumed**: added flat to the result of the min and max formulas (`max += 1.20 * Dexterity`, `min += 0.80 * Dexterity`), not folded into `maxValue` before the `* 0.20` step. This mirrors what was shown in game for Strength ([knight.md](knight.md#2-strength--confirmed)) but has not been tested for Dexterity.
 
@@ -124,6 +124,7 @@ The compendium pages above give nothing on these, so they are open for the next 
 - Rounding of distance damage, and whether Dexterity is added flat (both assumed above).
 - Hit chance and miss chance, including the close-range penalty.
 - Distance attack interval (assumed 2 s above).
+- Whether a distance hit uses up one of the two blocked attacks in a 2-second window.
 - Critical hits.
 - Attack values of Heavy Arrows, Heavy Bolts and the Ethereal Spear.
 - Dexterity values of specific items.

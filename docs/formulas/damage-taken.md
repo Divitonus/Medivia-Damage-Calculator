@@ -9,6 +9,7 @@ Order of reduction in the compendium's example: the shield (blocking) first, the
 ## Blocking — Confirmed
 
 Reduces physical damage only. Applies to the first two physical attacks received in any 2-second window; further attacks in that window are not reduced. Distance attacks ignore blocking and are reduced by armor only (see [archer.md](archer.md#hitting-and-reduction--confirmed)).
+Whether a distance hit still counts toward the two-attack window is **not stated**.
 
 ```
 maxBlock = defenceValue * skillValue ^ (6/5) * defenceFactor * 0.05 + 10
