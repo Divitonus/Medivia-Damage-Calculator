@@ -66,7 +66,7 @@ The training page says a blood hit is needed "every 30 turns (60 seconds)", so o
 - Ammunition is equipped in the arrow slot of the Inventory. Quivers carry extra ammunition.
 - Each ammunition type has its own attack value.
 - Ammunition is conjured by archers, dropped by monsters, or bought from NPCs and players.
-- Heavy Arrows and Heavy Bolts can only be used while Arcane Marksmanship is active (see below).
+- Arcane Marksmanship allows the use of Heavy Arrows and Heavy Bolts (see below). Whether they can be used without it is not stated.
 - The Ethereal Spear is conjured with "increo telum", a spell every archer knows, and does not drop on the ground after a throw.
 
 **Not stated:** how weapon and ammunition attack combine into `attackValue` for bows and crossbows, whether a spear's or thrown weapon's own attack is used directly, and the attack values of Heavy ammunition and the Ethereal Spear.
@@ -91,7 +91,7 @@ How it is applied is **Assumed**: added flat to the result of the min and max fo
 
 ### Arcane Marksmanship — Confirmed
 
-A toggled spell (anthar arcus amplio), the archer counterpart of Bloodlust Stance. Mana cost 0, magic level 18, premium only, spell cost 0 gold. No cooldown. Learned from Ehrenfried in Garrogat after completing the Order of the Holy Rose faction.
+A toggled spell (anthar arcus amplio). It works much like the knight's Bloodlust Stance (our comparison, not the compendium's). Mana cost 0, magic level 18, premium only, spell cost 0 gold. No cooldown. Learned from Ehrenfried in Garrogat after completing the Order of the Holy Rose faction.
 
 While active:
 - Only usable in a party with active shared experience.
