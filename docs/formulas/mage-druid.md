@@ -2,7 +2,7 @@
 
 Tagging: see [README.md](README.md). Armor: see [damage-taken.md](damage-taken.md).
 
-Mages and druids share these mechanics: the compendium pages below name both vocations together and give nothing that separates them.
+Mages and druids share these mechanics (**Assumed** for anything beyond these pages): the compendium pages below name both vocations together and give nothing that separates them.
 
 **Source for everything marked Confirmed:** the in-game compendium (Intelligence, Wands and Small Explosive Runes pages). Nothing on this page has been tested in game yet.
 
@@ -14,7 +14,7 @@ A stat from equipment and temporary effects only. Only mages and druids benefit 
 | --- | --- |
 | Spellpower | +1 |
 
-Sources:
+What the Intelligence page says about where it comes from:
 - The amount of Intelligence an item grants is determined by its Item Rank.
 - Many equipment pieces and magical weapons provide Intelligence, either as a fixed Property or as a randomized Attribute.
 - Items with higher rarity or rank often provide more Intelligence.
@@ -49,18 +49,22 @@ minValue = spellpower * 0.15
 maxValue = spellpower * 0.35
 ```
 
-Rounding is not stated. Whether armor reduces this physical damage is not stated either; see [damage-taken.md](damage-taken.md).
+Rounding is not stated. The damage is physical, and [armor](damage-taken.md#armor--confirmed) reduces all physical damage; whether [blocking](damage-taken.md#blocking--confirmed) applies to a rune hit is **not stated**.
+
+**Not stated:** whether a scepter or rod acts as a one-handed or a two-handed weapon for this table, how the damage is rolled between the minimum and maximum, and whether each tile of the explosion gets its own roll.
 
 ### Worked example — Assumed (ours, not the compendium's)
 
-Spellpower 100: range 15 to 35 per rune. Plain arithmetic on the formula above; not checked in game.
+Spellpower 100: range 15.0 to 35.0 per rune before any rounding. Plain arithmetic on the formula above; not checked in game.
 
 ## 4. Not yet documented
 
 The compendium pages above give nothing on these, so they are open for the next source:
 
-- Where base Spellpower comes from besides Intelligence (level, magic level, equipment).
-- Rounding of rune damage.
+- Where base Spellpower comes from besides Intelligence.
+- Rounding of rune damage, how it is rolled between minimum and maximum, and per-tile rolls in the explosion.
+- How scepters and rods fit the rune table.
+- Whether blocking applies to rune hits.
 - Wand attack damage, charges and interval.
 - Rune consumption per use.
-- Spell damage formulas, resistances and critical hits, and anything that separates a mage from a druid.
+- Magic damage and spell damage formulas, resistances and critical hits, and anything that separates a mage from a druid.
