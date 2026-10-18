@@ -1,8 +1,8 @@
-# Formulas: Knight damage mechanics
+# Knight damage mechanics
 
-Every formula below is tagged **Confirmed** (stated by the source) or **Assumed** (inferred by us, not stated).
+Tagging and stances: see [README.md](README.md). Blocking and armor: see [damage-taken.md](damage-taken.md).
 
-**Source for everything marked Confirmed:** the in-game compendium (Melee Fighting, Strength, Bloodlust Stance, Blocking and Armor pages). Worked examples are the compendium's own and were re-checked by hand against the formulas.
+**Source for everything marked Confirmed:** the in-game compendium (Melee Fighting, Strength and Bloodlust Stance pages). Worked examples are the compendium's own and were re-checked by hand against the formulas.
 
 ## 1. Melee damage
 
@@ -14,7 +14,7 @@ maxValue = 25 + (attackSkill ^ 2) / 1550 * attackValue / attackFactor
 
 - `attackSkill`: the skill for the weapon type (swords, clubs, axes).
 - `attackValue`: the weapon's attack.
-- `attackFactor`: set by stance (see Stances).
+- `attackFactor`: set by stance (see [Stances](README.md#stances-attack-factor--confirmed)).
 
 ### Minimum hit — Confirmed (in-game tested)
 
@@ -61,16 +61,6 @@ The compendium's own one-handed example is the only value that disagrees with al
 | One-handed | 2 s |
 | Two-handed | 3 s |
 
-### Stances (attack factor) — Confirmed
-
-| Stance | attackFactor |
-| --- | --- |
-| Offensive | 1.0 |
-| Balanced | 1.2 |
-| Defensive | 2.0 |
-
-A larger factor lowers the maximum hit. Stance is changed in the Inventory tab, above the active conditions window.
-
 ### Worked example — Confirmed (compendium)
 
 Level 50, melee skill 80, Offensive. `80^2 / 1550 = 4.129`.
@@ -94,56 +84,7 @@ A stat from equipment and temporary effects only (for example Green Witches Poti
 
 **Not stated by the compendium:** the Strength value of any specific item (it depends on Item Rank).
 
-## 3. Damage taken
-
-Order of reduction in the compendium's example: the shield (blocking) first, then armor.
-
-### Blocking — Confirmed
-
-Reduces physical damage only. Applies to the first two physical attacks received in any 2-second window; further attacks in that window are not reduced.
-
-```
-maxBlock = defenceValue * skillValue ^ (6/5) * defenceFactor * 0.05 + 10
-```
-
-The amount blocked is a random value between 0 and `maxBlock`. All numbers round down.
-
-Which item and skill are used:
-
-| Equipped | defenceValue from | skillValue |
-| --- | --- | --- |
-| Shield | the shield's Def | Blocking skill |
-| Melee weapon, if no shield | the weapon's Def | Melee Fighting skill |
-| Distance weapon | fixed 7 | Distance Fighting skill |
-| Fists | fixed 7 | not stated |
-
-Defence factor by stance:
-
-| Stance | defenceFactor |
-| --- | --- |
-| Offensive | 0.5 |
-| Balanced | 0.7 |
-| Defensive | 1.0 |
-
-Worked example (dark shield Def 25, Blocking skill 50), checked: Defensive 146, Balanced 105, Offensive 78.
-
-### Armor — Confirmed
-
-Reduces all physical damage, including sudden death runes and ultimate explosion. Armor comes from the helmet, armor, legs and boots slots, plus some amulets. Skills do not affect it.
-
-```
-totalArmor = sum of the armor value of every equipped item
-minReduction = totalArmor ^ (4/3) * 0.27
-maxReduction = totalArmor ^ (3/2) * 0.26
-```
-
-A random value between `minReduction` and `maxReduction` is subtracted from the incoming damage. Damage reduced to 0 or below shows a yellow spark on the creature.
-
-Rounding is not stated; the compendium's example is consistent with rounding down (**Assumed**).
-
-Worked example, checked: total armor 30 gives a reduction of 25 to 42. A 90 melee hit with 40 blocked leaves 50, armor takes 25 to 42, so 8 to 25 hit points are lost.
-
-## 4. Knight spells and modifiers
+## 3. Knight spells and modifiers
 
 ### Bloodlust Stance — Confirmed
 
@@ -164,7 +105,7 @@ While Bloodlust Stance is active, taking damage while using a two-handed weapon 
 | Decimate | 50 |
 | Berserk | 100 |
 
-## 5. Not yet documented
+## 4. Not yet documented
 
 The compendium pages above give nothing on these, so they are open for the next source:
 
